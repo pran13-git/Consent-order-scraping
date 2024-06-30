@@ -3,7 +3,7 @@ name: Scrape Website
 on:
   schedule:
     # Runs at 00:00 UTC every day
-    - cron: '0 0 * * *'
+    - cron: '*/5 * * * *'
   workflow_dispatch:
 
 jobs:
