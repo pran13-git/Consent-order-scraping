@@ -2,7 +2,7 @@ name: Scrape Website
 
 on:
   schedule:
-    # Runs at 00:00 UTC every day
+    # Runs every 5 minutes
     - cron: '*/5 * * * *'
   workflow_dispatch:
 
@@ -34,6 +34,7 @@ jobs:
         sudo apt-get install -y unzip
         wget -O /tmp/chromedriver.zip https://chromedriver.storage.googleapis.com/109.0.5414.74/chromedriver_linux64.zip
         unzip /tmp/chromedriver.zip -d /usr/local/bin/
+        sudo ln -s /usr/local/bin/chromedriver /usr/bin/chromedriver
 
     - name: Run scraping script
       run: python scrape.py
@@ -47,4 +48,5 @@ jobs:
         git push
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
 
