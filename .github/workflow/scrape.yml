@@ -24,17 +24,17 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
 
-    - name: Install Chrome
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y chromium-browser
+    # - name: Install Chrome
+    #   run: |
+    #     sudo apt-get update
+    #     sudo apt-get install -y chromium-browser
 
-    - name: Download Chromedriver
-      run: |
-        sudo apt-get install -y unzip
-        wget -O /tmp/chromedriver.zip https://chromedriver.storage.googleapis.com/109.0.5414.74/chromedriver_linux64.zip
-        unzip /tmp/chromedriver.zip -d /usr/local/bin/
-        sudo ln -s /usr/local/bin/chromedriver /usr/bin/chromedriver
+    # - name: Download Chromedriver
+    #   run: |
+    #     sudo apt-get install -y unzip
+    #     wget -O /tmp/chromedriver.zip https://chromedriver.storage.googleapis.com/109.0.5414.74/chromedriver_linux64.zip
+    #     unzip /tmp/chromedriver.zip -d /usr/local/bin/
+    #     sudo ln -s /usr/local/bin/chromedriver /usr/bin/chromedriver
 
     - name: Run scraping script
       run: python scrape.py
