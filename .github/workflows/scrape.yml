@@ -19,8 +19,15 @@ jobs:
       with:
         python-version: '3.x'
 
+    - name: Install Chrome
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y chromium-browser
+
     - name: setup-chromedriver
       uses: nanasess/setup-chromedriver@v2.2.2
+      with:
+        chromedriver-version: 'latest'  # Use latest to match the installed Chrome
 
     - name: Install dependencies
       run: |
