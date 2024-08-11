@@ -1,6 +1,8 @@
 import os
 import re
 import csv
+import shutil
+from selenium.webdriver.chrome.options import Options
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
@@ -8,12 +10,18 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import NoSuchElementException
 
-# Setup Selenium WebDriver
-service = Service(executable_path="./chromedriver")
-options = webdriver.ChromeOptions()
-options.add_argument('--headless')  # Run headlessly for GitHub Actions
+chrome_driver_path = shutil.which("chromedriver")
+
+# Set Chrome options
+options = Options()
+options.add_argument('--headless')  # Run in headless mode if needed
 options.add_argument('--no-sandbox')
 options.add_argument('--disable-dev-shm-usage')
+
+# Create the ChromeDriver service
+service = Service(executable_path=chrome_driver_path)
+
+# Initialize the Chrome WebDriver
 driver = webdriver.Chrome(service=service, options=options)
 
 # Navigate to the target URL
