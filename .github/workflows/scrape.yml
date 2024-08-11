@@ -16,7 +16,7 @@ jobs:
       run: |
         nslookup xgn.karnataka.gov.in
         curl -I https://google.com
-        
+
     - name: Checkout repository
       uses: actions/checkout@v2
 
@@ -52,7 +52,7 @@ jobs:
 
     - name: Test URL accessibility
       run: |
-        curl -I https://xgn.karnataka.gov.in/CSHARP/ALLConsentOrder.aspx
+        curl -Iv https://xgn.karnataka.gov.in/CSHARP/ALLConsentOrder.aspx
 
     - name: Run scraping script
       run: python scrape.py
