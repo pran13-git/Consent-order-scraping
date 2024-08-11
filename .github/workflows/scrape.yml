@@ -44,6 +44,10 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
 
+    - name: Test URL accessibility
+      run: |
+        curl -I https://xgn.karnataka.gov.in/CSHARP/ALLConsentOrder.aspx
+
     - name: Run scraping script
       run: python scrape.py
 
