@@ -49,4 +49,8 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+    - name: setup-chromedriver
+      uses: nanasess/setup-chromedriver@v2.2.2
+            
+
 
