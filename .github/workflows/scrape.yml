@@ -2,6 +2,7 @@ name: Scrape Website
 
 on:
   schedule:
+    # Runs every 5 minutes
     - cron: '*/5 * * * *'
   workflow_dispatch:
 
@@ -26,10 +27,17 @@ jobs:
         sudo dpkg -i google-chrome-stable_current_amd64.deb || sudo apt-get -f install -y
         google-chrome --version  # Print the Chrome version to confirm installation
 
+    - name: Download and Install ChromeDriver
+      run: |
+        sudo apt-get install -y unzip
+        CHROME_DRIVER_VERSION=$(curl -sS chromedriver.storage.googleapis.com/LATEST_RELEASE)
+        wget -O /tmp/chromedriver.zip https://chromedriver.storage.googleapis.com/$CHROME_DRIVER_VERSION/chromedriver_linux64.zip
+        sudo unzip /tmp/chromedriver.zip -d /usr/local/bin/
+        sudo chmod +x /usr/local/bin/chromedriver
+        chromedriver --version  # Print the ChromeDriver version to confirm installation
+
     - name: Set up ChromeDriver
       uses: nanasess/setup-chromedriver@v2.2.2
-      # with:
-        # chromedriver-version: '114.0.5735.90'  # Replace with the specific version matching your Chrome
 
     - name: Install dependencies
       run: |
@@ -48,7 +56,6 @@ jobs:
         git push
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
 
 
 
