@@ -11,6 +11,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+
+    - name: Check DNS Resolution
+      run: |
+        nslookup xgn.karnataka.gov.in
+        curl -I https://google.com
+        
     - name: Checkout repository
       uses: actions/checkout@v2
 
