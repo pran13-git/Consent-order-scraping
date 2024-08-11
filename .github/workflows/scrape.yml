@@ -19,15 +19,18 @@ jobs:
       with:
         python-version: '3.x'
 
-    - name: Install Chrome
+    - name: Install Google Chrome
       run: |
         sudo apt-get update
-        sudo apt-get install -y chromium-browser
+        sudo apt-get install -y wget
+        wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+        sudo dpkg -i google-chrome-stable_current_amd64.deb || sudo apt-get -f install -y
+        google-chrome --version  # Print the Chrome version to confirm installation
 
-    - name: setup-chromedriver
+    - name: Set up ChromeDriver
       uses: nanasess/setup-chromedriver@v2.2.2
       with:
-        version: '114.0.5735.90'  # Replace with your specific Chrome version if known
+        version: '114.0.5735.90'  # Match the ChromeDriver version to your installed Chrome version
 
     - name: Install dependencies
       run: |
@@ -47,8 +50,5 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-
-    
-            
 
 
