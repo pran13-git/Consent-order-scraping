@@ -2,7 +2,6 @@ name: Scrape Website
 
 on:
   schedule:
-    # Runs every 5 minutes
     - cron: '*/5 * * * *'
   workflow_dispatch:
 
@@ -30,7 +29,7 @@ jobs:
     - name: Set up ChromeDriver
       uses: nanasess/setup-chromedriver@v2.2.2
       with:
-        version: '114.0.5735.90'  # Match the ChromeDriver version to your installed Chrome version
+        chromedriver-version: '114.0.5735.90'  # Replace with the specific version matching your Chrome
 
     - name: Install dependencies
       run: |
@@ -49,6 +48,7 @@ jobs:
         git push
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
 
 
 
