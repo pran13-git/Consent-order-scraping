@@ -24,6 +24,8 @@ service = Service(executable_path=chrome_driver_path)
 # Initialize the Chrome WebDriver
 driver = webdriver.Chrome(service=service, options=options)
 
+print('driver found')
+
 # Navigate to the target URL
 driver.get("https://xgn.karnataka.gov.in/CSHARP/ALLConsentOrder.aspx")
 
@@ -61,6 +63,7 @@ def is_duplicate(row):
 # Scrape the table and handle pagination
 while True:
     WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, "dgPro")))
+    print('scraping')
     table = driver.find_element(By.ID, "dgPro")
     rows = table.find_elements(By.TAG_NAME, "tr")
 
